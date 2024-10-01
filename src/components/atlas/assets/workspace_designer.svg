@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="injected-svg" data-src="https://qa-cdn-talkdesk.talkdeskdev.com/cdn-assets/latest/talkdesk/product/app-icons/workspace_designer.svg?cors=false" xmlns:xlink="http://www.w3.org/1999/xlink" role="img">
+  <g transform="translate(2 3)">
+    <circle cx="4" cy="5.997" r="1">
+    </circle>
+    <path d="M18 7.997v8H2v-12h8.001v-2H2a2.002 2.002 0 0 0-2 2v12a2.002 2.002 0 0 0 2 2h16a2.002 2.002 0 0 0 2-2v-8h-2Z" fill="">
+    </path>
+    <path d="M8 11.997h4.064l7.101-7.098a2.884 2.884 0 0 0-.783-4.618 2.898 2.898 0 0 0-3.34.615L8 7.93v4.067Zm8.455-9.686a.937.937 0 0 1 1.028-.243c.27.126.458.377.505.67a.854.854 0 0 1-.235.746l-.475.475-1.236-1.235.413-.413ZM10 8.76l5.334-5.329 1.237 1.235-5.335 5.33H10V8.76Z" fill="">
+    </path>
+  </g>
+</svg>

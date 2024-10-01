@@ -1,0 +1,4 @@
+{
+  "watch": ["src/**/*.ts", "mock-datas/**/*.json"],
+  "exec": "ts-node ./src/index.ts"
+}

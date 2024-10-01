@@ -1,0 +1,32 @@
+{
+  "$schema": "https://unpkg.com/release-it@17/schema/release-it.json",
+  "github": {
+    "release": true,
+    "tagName": "v${version}",
+    "releaseName": "v${version}",
+    "draft": true,
+    "autoGenerate": false
+  },
+  "git": {
+    "commitMessage": "release: v${version}",
+    "commit": true,
+    "tag": false,
+    "push": false
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "in": {
+        "file": "package.json",
+        "type": "application/json"
+      },
+      "out": {
+        "file": "package.json",
+        "type": "application/json"
+      }
+    },
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "ignoreRecommendedBump": true
+    }
+  }
+}

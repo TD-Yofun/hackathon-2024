@@ -1,0 +1,24 @@
+.menu {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50%;
+  &:hover {
+    background-color: var(--gray-400) !important;
+  }
+
+  span {
+    width: 24px !important;
+    height: 24px !important;
+    svg {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
+}
+
+.menu--active {
+  background-color: var(--primary-600) !important;
+  &:hover {
+    background-color: var(--primary-600) !important;
+  }
+}

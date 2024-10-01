@@ -1,0 +1,7 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["classcat", "consola", "dynatrace", "FSEC", "NOETICA", "reduxjs", "screenmeet", "Scroller", "SPLITIO"],
+  "flagWords": [],
+  "ignorePaths": ["node_modules"]
+}

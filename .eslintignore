@@ -1,0 +1,14 @@
+# common
+node_modules/
+kci-scripts/
+
+# build
+build/
+dist/
+
+# test
+coverage/
+
+# sornar-qube
+dependency-check-bin
+dependency-check-reports
