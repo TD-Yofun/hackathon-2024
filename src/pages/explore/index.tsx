@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import Box from '@cobalt/react-box';
 import Button from '@cobalt/react-button';
 import Divider from '@cobalt/react-divider';
@@ -20,6 +22,7 @@ const tableData = mockData._embedded.artifacts;
 type Data = (typeof tableData)[0];
 
 const Explore = () => {
+  const navigate = useNavigate();
   const { theme, responsiveValue } = useHooks();
 
   const paddingValue = responsiveValue(['12px', '16px', '24px']);
@@ -63,7 +66,7 @@ const Explore = () => {
     <Flex width="100%" height="100%" direction="column">
       <Header title="Explore">
         <Flex gap={2}>
-          <Button type="secondary">
+          <Button type="secondary" onClick={() => navigate('/explore/hackathon')}>
             <Flex gap={1} alignY="center">
               <Icon name="robot" size="tiny" style={{ marginTop: '-2px' }} />
               <span>{HACKATHON_NAME}</span>

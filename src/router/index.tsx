@@ -3,6 +3,7 @@ import { PathRouteProps } from 'react-router-dom';
 import Box from '@cobalt/react-box';
 
 import Explore from '@/pages/explore';
+import HackathonPage from '@/pages/hackathon';
 
 import { menus } from './menus';
 
@@ -33,6 +34,11 @@ export const routes: Route[] = [
       element: path === '/explore' ? <Explore /> : <DefaultComponent />,
     };
   }),
+  // explore
+  {
+    path: '/explore/hackathon',
+    element: <HackathonPage />,
+  },
   {
     path: '*',
     redirect: '/',

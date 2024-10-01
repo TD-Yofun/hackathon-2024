@@ -30,6 +30,8 @@
     "@cobalt-marketplace/react-overflow-scroll": "^1.0.0",
     "@cobalt-marketplace/react-tooltip": "1.2.1",
     "@cobalt-marketplace/react-pagination": "^1.2.1",
+    "@cobalt-marketplace/react-transcription-bubble": "2.0.2",
+    "@cobalt/react-chat-bubble": "1.1.9",
     "@cobalt/cobalt-react-components": "29.0.0-3",
     "@cobalt/react-accordion": "^1.1.7",
     "@cobalt/react-avatar": "^1.3.0",
@@ -121,6 +123,7 @@
     "trim-newlines": "^5.0.0",
     "consola": "^3.2.3",
     "styled-components": "^6.1.11",
+    "uuid": "^10.0.0",
     "core-js": "^3.38.1"
   },
   "devDependencies": {
@@ -150,6 +153,7 @@
     "@types/node": "^20.9.0",
     "@types/lodash": "^4.14.201",
     "@types/jest": "^29.5.7",
+    "@types/uuid": "^10.0.0",
     "prettier": "^3.0.1",
     "eslint": "^8.47.0",
     "eslint-config-react-app": "^7.0.1",
