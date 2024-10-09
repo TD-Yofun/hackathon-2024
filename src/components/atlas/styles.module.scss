@@ -1,7 +1,7 @@
 .menu {
   width: 38px !important;
   height: 38px !important;
-  border-radius: 50%;
+  border-radius: 50% !important;
   &:hover {
     background-color: var(--gray-400) !important;
   }

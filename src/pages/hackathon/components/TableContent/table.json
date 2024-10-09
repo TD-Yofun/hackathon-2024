@@ -1,0 +1,282 @@
+{
+  "columns": [
+    {
+      "title": "Name",
+      "key": "name"
+    },
+    {
+      "title": "Type",
+      "key": "type"
+    },
+    {
+      "title": "Creator",
+      "key": "id"
+    },
+    {
+      "title": "Schedules",
+      "key": "schedules"
+    }
+  ],
+  "data": [
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/31/embed_url"
+        }
+      },
+      "id": "31",
+      "name": "Account Breakdown Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/32/embed_url"
+        }
+      },
+      "id": "32",
+      "name": "Activity Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-dashboards/2/embed_url"
+        }
+      },
+      "id": "2",
+      "name": "Agent Contacts' Volumes and Durations",
+      "type": "DEFAULT_DASHBOARDS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-dashboards/1/embed_url"
+        }
+      },
+      "id": "1",
+      "name": "Agent Details",
+      "type": "DEFAULT_DASHBOARDS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-dashboards/3/embed_url"
+        }
+      },
+      "id": "3",
+      "name": "Agents",
+      "type": "DEFAULT_DASHBOARDS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/2/embed_url"
+        }
+      },
+      "id": "2",
+      "name": "Agents Breakdown Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/33/embed_url"
+        }
+      },
+      "id": "33",
+      "name": "Agents Inbound Dispositions Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/34/embed_url"
+        }
+      },
+      "id": "34",
+      "name": "Agents Outbound Dispositions Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/3/embed_url"
+        }
+      },
+      "id": "3",
+      "name": "Agents Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/4/embed_url"
+        }
+      },
+      "id": "4",
+      "name": "Agents Status Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/30/embed_url"
+        }
+      },
+      "id": "30",
+      "name": "AI Conversation Markers",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/23/embed_url"
+        }
+      },
+      "id": "23",
+      "name": "Audit Logs Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/197/embed_url"
+        }
+      },
+      "id": "197",
+      "name": "Banking Omnichannel Interactions Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-dashboards/4/embed_url"
+        }
+      },
+      "id": "4",
+      "name": "Billing Dashboard",
+      "type": "DEFAULT_DASHBOARDS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/5/embed_url"
+        }
+      },
+      "id": "5",
+      "name": "Billing Usage Aggregated Cost Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/8/embed_url"
+        }
+      },
+      "id": "8",
+      "name": "Billing Usage by Contact Country",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/9/embed_url"
+        }
+      },
+      "id": "9",
+      "name": "Billing Usage by Phone Number",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/10/embed_url"
+        }
+      },
+      "id": "10",
+      "name": "Billing Usage by Ring Group",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/11/embed_url"
+        }
+      },
+      "id": "11",
+      "name": "Billing Usage by Usage Type",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    },
+    {
+      "_links": {
+        "embed_url": {
+          "href": "https://api.talkdeskqa.com/explore-reports/6/embed_url"
+        }
+      },
+      "id": "6",
+      "name": "Billing Usage Cost Report",
+      "type": "DEFAULT_REPORTS",
+      "schedules": 0,
+      "shared": false,
+      "shareable": false
+    }
+  ]
+}

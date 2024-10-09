@@ -1,0 +1,15 @@
+.item {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.active {
+  background-color: var(--primary-300);
+  &:hover {
+    background-color: var(--primary-300) !important;
+  }
+  &:focus {
+    box-shadow: none !important;
+  }
+}

@@ -5,11 +5,13 @@ import { HackathonMessage } from '@/pages/hackathon/type';
 interface State {
   loading: boolean;
   messages: HackathonMessage[];
+  activeMessage: HackathonMessage | null;
 }
 
 const initialState: State = {
   loading: false,
   messages: [],
+  activeMessage: null,
 };
 
 const slice = createSlice({
@@ -28,8 +30,11 @@ const slice = createSlice({
         Object.assign(message, action.payload);
       }
     },
+    setActiveMessage(state, action: PayloadAction<State['activeMessage']>) {
+      state.activeMessage = action.payload;
+    },
   },
 });
 
-export const { setHackathonLoading, setMessages, setUpdateMessage } = slice.actions;
+export const { setHackathonLoading, setMessages, setUpdateMessage, setActiveMessage } = slice.actions;
 export default slice.reducer;

@@ -9,19 +9,38 @@ import { v4 } from 'uuid';
 import Header from '@/components/Header/Header';
 import { HACKATHON_NAME, HACKATHON_RECEIVED_NAME } from '@/constant';
 import { useHooks } from '@/hooks/useHooks';
-import { setHackathonLoading, setMessages, setUpdateMessage } from '@/store/hackathon';
+import { useSelector } from '@/store';
+import { setActiveMessage, setHackathonLoading, setMessages, setUpdateMessage } from '@/store/hackathon';
 
+import ChartContent from './components/ChartContent/ChartContent';
 import ChatContent from './components/Chat/ChatContent';
 import History from './components/History/History';
 import NoConversation from './components/State/NoConversation';
+import TableContent from './components/TableContent/TableContent';
 import { useHackathonRequest } from './hooks/useHackathonRequest';
 import { HackathonMessage, MessageType } from './type';
 
 const HackathonPage = () => {
   const { dispatch } = useHooks();
   const navigate = useNavigate();
-  // const { messages } = useSelector((state) => state.hackathon);
+  const { activeMessage } = useSelector((state) => state.hackathon);
   const { request } = useHackathonRequest();
+
+  const renderContent = () => {
+    if (!activeMessage) {
+      return <NoConversation />;
+    }
+    if (activeMessage.messageType === MessageType.TABLE) {
+      return <TableContent message={activeMessage} />;
+    }
+    if (
+      [MessageType.CHART, MessageType.BAR_CHART, MessageType.LINE_CHART, MessageType.PIE_CHART].includes(
+        activeMessage.messageType,
+      )
+    ) {
+      return <ChartContent key={activeMessage.id} message={activeMessage} />;
+    }
+  };
 
   // init conversation
 
@@ -50,7 +69,10 @@ const HackathonPage = () => {
   return (
     <Flex width="100%" height="100%" direction="column">
       <Header
-        onBackClick={() => navigate(-1)}
+        onBackClick={() => {
+          dispatch(setActiveMessage(null));
+          navigate(-1);
+        }}
         title={`Hello, ${HACKATHON_NAME}`}
         description="Let’s get started with your hackathon!"
       />
@@ -60,7 +82,7 @@ const HackathonPage = () => {
 
         {/* content */}
         <Box grow width="0" height="100%">
-          <NoConversation />
+          {renderContent()}
         </Box>
 
         {/* chat */}

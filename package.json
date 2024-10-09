@@ -122,6 +122,7 @@
     "tabbable": "6.2.0",
     "trim-newlines": "^5.0.0",
     "consola": "^3.2.3",
+    "echarts": "^5.5.1",
     "styled-components": "^6.1.11",
     "uuid": "^10.0.0",
     "core-js": "^3.38.1"
