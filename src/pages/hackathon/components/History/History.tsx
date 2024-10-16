@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import cc from 'classcat';
 
 import Box from '@cobalt/react-box';
@@ -19,6 +21,8 @@ const History = () => {
   const { messages, activeMessage } = useSelector((state) => state.hackathon);
   const historyFiles = messages.filter((message) => message.messageType !== MessageType.TEXT);
 
+  const [expanded, setExpanded] = useState(true);
+
   const render = () => {
     if (historyFiles.length === 0) {
       return (
@@ -34,7 +38,7 @@ const History = () => {
       );
     } else {
       return (
-        <Box padding={2}>
+        <Box padding={2} width="260px" height="100%" scrollable>
           <List>
             {historyFiles.map((message, index) => {
               const isActive = message.id === activeMessage?.id;
@@ -63,8 +67,40 @@ const History = () => {
 
   return (
     <>
-      <Box width="260px" height="100%" scrollable>
-        {render()}
+      <Box
+        height="100%"
+        style={{
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
+        <Box
+          style={{
+            width: expanded ? '260px' : 0,
+            transition: 'width 0.3s',
+            overflow: 'hidden',
+          }}
+        >
+          {render()}
+        </Box>
+        <Flex
+          onClick={() => setExpanded(!expanded)}
+          style={{
+            width: '28px',
+            height: '28px',
+            borderRadius: '50%',
+            position: 'absolute',
+            backgroundColor: 'var(--gray-200)',
+            top: '24px',
+            right: '-14px',
+            cursor: 'pointer',
+            zIndex: 1,
+          }}
+          alignX="center"
+          alignY="center"
+        >
+          <Icon name={expanded ? 'chevron_left' : 'chevron_right'} size="small" color="var(--primary-600)" />
+        </Flex>
       </Box>
       <Divider vertical />
     </>

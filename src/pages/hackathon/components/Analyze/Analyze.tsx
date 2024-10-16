@@ -28,7 +28,7 @@ const TextBubble = ({ message, isAnimate }: { message: string; isAnimate: boolea
     return () => clearInterval(interval);
   }, [isAnimate]);
 
-  return <Text>{text}</Text>;
+  return <Text dangerouslySetInnerHTML={{ __html: text }} />;
 };
 
 const Analyze = ({ message }: { message: string }) => {

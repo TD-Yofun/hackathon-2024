@@ -2,15 +2,12 @@ import { useCallback } from 'react';
 
 import { delayPromise } from '@/config/HttpClient';
 
-import { CONVERSATIONS } from './constant';
+import { Conversation, CONVERSATIONS } from './constant';
 import { MessageType } from '../type';
 
-interface ReturnValue {
-  messageType: MessageType;
+type ReturnValue = Pick<Conversation, 'messageType' | 'component'> & {
   message: string;
-  data?: any;
-  analysis?: string;
-}
+};
 
 export function useHackathonRequest() {
   const request = useCallback(async (question: string): Promise<ReturnValue> => {
@@ -20,8 +17,7 @@ export function useHackathonRequest() {
       response = {
         messageType: conversation.messageType,
         message: conversation.answer,
-        data: conversation.data,
-        analysis: conversation.analysis,
+        component: conversation.component,
       };
     } else {
       response = {

@@ -1,3 +1,5 @@
+import { Conversation } from '../hooks/constant';
+
 export enum MessageType {
   TEXT = 'text',
   TABLE = 'table',
@@ -15,8 +17,7 @@ export interface HackathonMessage {
   name: string;
   messageType: MessageType;
   loading?: boolean;
-  data?: any;
-  analysis?: string;
+  component?: Conversation['component'];
 }
 
 /**

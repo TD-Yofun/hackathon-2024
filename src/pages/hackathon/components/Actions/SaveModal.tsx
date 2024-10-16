@@ -25,16 +25,17 @@ import { PADDING_SPACINGS } from '@industries-compositions/financial-utils';
 import { useHooks } from '@/hooks/useHooks';
 
 interface ConfirmModalProps {
+  defaultValue: string;
   onCancel: () => void;
   onConfirm: (value: string) => void;
 }
 
-const SaveModal = ({ onCancel, onConfirm }: ConfirmModalProps) => {
+const SaveModal = ({ defaultValue, onCancel, onConfirm }: ConfirmModalProps) => {
   const { viewport } = useHooks();
 
   const smallViewport = viewport === 'small';
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultValue);
 
   return (
     <Portal>

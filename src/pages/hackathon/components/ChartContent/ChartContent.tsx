@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import Box from '@cobalt/react-box';
 import Flex from '@cobalt/react-flex';
@@ -19,7 +19,7 @@ const ChartContent = ({ message }: Props) => {
   const { theme } = useHooks();
   const [loading, setLoading] = useState(false);
 
-  const chartJson = message.data;
+  const chartJson = useMemo(() => message.component?.data || [], [message.component?.data]);
 
   useEffect(() => {
     const mockFetch = async () => {
@@ -50,7 +50,7 @@ const ChartContent = ({ message }: Props) => {
           return <ChartItem key={index} option={option} isCard />;
         })}
       </Flex>
-      {message.analysis && <Analyze message={message.analysis} />}
+      {!!message.component?.analysis && <Analyze message={message.component.analysis} />}
     </Box>
   );
 };

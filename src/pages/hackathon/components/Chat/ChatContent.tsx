@@ -59,14 +59,13 @@ const ChatContent = () => {
       messageType: MessageType.TEXT,
     };
     dispatch(setMessages([...messages, sentMessage, replyMessage]));
-    const { messageType, message, data, analysis } = await request(v);
+    const { messageType, message, component } = await request(v);
     const newReplyMessage: HackathonMessage = {
       ...replyMessage,
       loading: false,
       message,
       messageType,
-      data,
-      analysis,
+      component,
     };
     dispatch(setUpdateMessage(newReplyMessage));
     inputRef.current?.focus();
@@ -140,7 +139,7 @@ const ChatContent = () => {
             borderRadius: '50%',
             position: 'absolute',
             backgroundColor: 'var(--gray-200)',
-            top: '14px',
+            top: '24px',
             left: '-14px',
             cursor: 'pointer',
           }}

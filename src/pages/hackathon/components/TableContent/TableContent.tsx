@@ -31,9 +31,11 @@ const TableContent = ({ forwardedRef, message }: Props) => {
 
   const paddingX: BoxProps['paddingX'] = '2';
 
+  const data = useMemo(() => message.component?.data!, [message.component?.data]);
+
   const columns: Column<any>[] = useMemo(() => {
     try {
-      return message.data.columns.map((column: any) => {
+      return data.columns.map((column: any) => {
         const newColumn: Column<any> = {
           title: column.title,
           key: column.key,
@@ -47,11 +49,11 @@ const TableContent = ({ forwardedRef, message }: Props) => {
     } catch (error) {
       return [];
     }
-  }, [message.data?.columns]);
+  }, [data.columns]);
 
-  const data = useMemo(() => {
-    return message.data?.data || [];
-  }, [message.data?.data]);
+  const tableData = useMemo(() => {
+    return data?.data || [];
+  }, [data?.data]);
 
   const generateCSVContent = useCallback(() => {
     // headers
@@ -121,7 +123,7 @@ const TableContent = ({ forwardedRef, message }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row: any, index: number) => (
+            {tableData.map((row: any, index: number) => (
               <tr key={index}>
                 {columns.map((column) => (
                   <td key={column.key as string}>
@@ -136,7 +138,7 @@ const TableContent = ({ forwardedRef, message }: Props) => {
         </table>
       </Box>
 
-      {message.analysis && <Analyze message={message.analysis} />}
+      {!!message.component?.analysis && <Analyze message={message.component.analysis} />}
     </Flex>
   );
 };

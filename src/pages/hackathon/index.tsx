@@ -32,7 +32,7 @@ export const renderComponent = (activeMessage: HackathonMessage | null, tableRef
     return <NoConversation />;
   }
   if (activeMessage.messageType === MessageType.TABLE) {
-    return <TableContent forwardedRef={tableRef} message={activeMessage} />;
+    return <TableContent key={activeMessage.id} forwardedRef={tableRef} message={activeMessage} />;
   }
   if (
     [MessageType.CHART, MessageType.BAR_CHART, MessageType.LINE_CHART, MessageType.PIE_CHART].includes(
@@ -159,6 +159,7 @@ const HackathonPage = () => {
 
       {!!showSaveModal && (
         <SaveModal
+          defaultValue={activeMessage?.component?.name || ''}
           onCancel={() => setShowSaveModal(false)}
           onConfirm={(value) => {
             // show success toast

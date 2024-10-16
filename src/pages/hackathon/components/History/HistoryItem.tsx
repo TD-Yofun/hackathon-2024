@@ -78,18 +78,20 @@ const HistoryItem = ({ message, index, isChat }: Props) => {
     return ItemMapper[message.messageType]?.text;
   }, [message.messageType]);
 
-  const no = index !== undefined ? `#00${index + 1}` : 'component';
+  // const no = index !== undefined ? `#00${index + 1}` : 'component';
 
   const handleClick = () => {
     dispatch(setActiveMessage(message));
   };
 
+  const title = message.component?.name || text;
+
   return (
     <Flex padding={2} alignY="center" gap={2} onClick={handleClick}>
       {!!iconRaw && <Icon dangerouslySetInnerHTML={{ __html: iconRaw }} />}
-      <Box>
-        <Text size={isChat ? 'small' : undefined}>
-          {text} {no}
+      <Box width={isChat ? 'auto' : '0'} grow>
+        <Text size={isChat ? 'small' : undefined} truncated title={title}>
+          {title}
         </Text>
         <Text size="small" color={theme.gray700}>
           {formatDateTime(message.timestamp)}
