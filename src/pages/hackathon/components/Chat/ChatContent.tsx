@@ -5,16 +5,18 @@ import Button from '@cobalt/react-button';
 import Divider from '@cobalt/react-divider';
 import Flex from '@cobalt/react-flex';
 import Icon from '@cobalt/react-icon';
-import Input from '@cobalt/react-input';
+import Textarea from '@cobalt/react-textarea';
 
 import { v4 } from 'uuid';
 
-import { HACKATHON_RECEIVED_NAME, HACKATHON_SENT_NAME, PADDING_SPACING } from '@/constant';
+import { eventBus, HACKATHON_RECEIVED_NAME, HACKATHON_SENT_NAME, PADDING_SPACING } from '@/constant';
 import { useHooks } from '@/hooks/useHooks';
+import { EventName } from '@/modal';
 import { useSelector } from '@/store';
 import { setMessages, setUpdateMessage } from '@/store/hackathon';
 
 import MessageList from './MessageList';
+import { useAutoInput } from '../../hooks/useAutoInput';
 import { useHackathonRequest } from '../../hooks/useHackathonRequest';
 import { HackathonMessage, MessageType } from '../../type';
 
@@ -22,9 +24,11 @@ const ChatContent = () => {
   const { messages } = useSelector((state) => state.hackathon);
   const { dispatch } = useHooks();
   const { request } = useHackathonRequest();
+  const { onClick: onInputClick } = useAutoInput();
 
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const [expanded, setExpanded] = useState(true);
 
   const [value, setValue] = useState('');
@@ -71,12 +75,47 @@ const ChatContent = () => {
     inputRef.current?.focus();
   };
 
+  // simulate type message
+  const simulateTypeMessage = async (content: string) => {
+    setValue('');
+    clearInterval(timerRef.current!);
+    timerRef.current = setInterval(() => {
+      setValue((prev) => {
+        if (prev.length === content.length) {
+          clearInterval(timerRef.current!);
+          return prev;
+        }
+        return content.slice(0, prev.length + 1);
+      });
+    }, 50);
+  };
+
+  useEffect(() => {
+    const unbind = eventBus.subscribe(EventName.HACKATHON_INPUT, ({ action, payload }) => {
+      simulateTypeMessage(payload.question);
+    });
+
+    return () => {
+      unbind();
+      clearInterval(timerRef.current!);
+    };
+  }, []);
+
   useEffect(() => {
     // scroll to bottom
     if (scrollerRef.current) {
       scrollerRef.current.scrollTop = scrollerRef.current.scrollHeight;
     }
   }, [messages]);
+
+  // let input scroll to end
+  useEffect(() => {
+    const inputElement = inputRef.current;
+    if (!inputElement) return;
+    // Scroll the input field to the end
+    // inputElement.scrollLeft = inputElement.scrollWidth;
+    inputElement.scrollTop = inputElement.scrollHeight;
+  }, [value]);
 
   return (
     <>
@@ -107,10 +146,11 @@ const ChatContent = () => {
             </Box>
             <Divider />
             <Flex width="100%" gap={2} paddingY={2} paddingX={PADDING_SPACING}>
-              <Input
+              <Textarea
                 forwardedRef={inputRef}
                 disabled={loading}
                 value={value}
+                resizable={false}
                 onChange={(e: any) => setValue(e.target.value)}
                 placeholder="Type a message..."
                 onKeyDown={(e: any) => {
@@ -118,10 +158,13 @@ const ChatContent = () => {
                     handleSend(value);
                   }
                 }}
+                onClick={onInputClick}
+                style={{ height: '80px' }}
               />
               <Button
                 type="primary"
                 disabled={loading || value.trim() === ''}
+                style={{ height: '80px' }}
                 onClick={() => {
                   handleSend(value);
                 }}
