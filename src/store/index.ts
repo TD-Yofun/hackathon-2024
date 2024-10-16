@@ -2,13 +2,17 @@ import { TypedUseSelectorHook, useDispatch as useReduxDispatch, useSelector as u
 
 import { configureStore } from '@reduxjs/toolkit';
 
+import explore from './explore';
 import globals from './globals';
 import hackathon from './hackathon';
+import toast from './toast';
 
 const store = configureStore({
   reducer: {
     globals,
+    explore,
     hackathon,
+    toast,
   },
 });
 

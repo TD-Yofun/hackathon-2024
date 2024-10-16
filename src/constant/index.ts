@@ -8,4 +8,4 @@ export const PADDING_SPACING: BoxProps['padding'] = [3, 4, 6];
 
 export const HACKATHON_RECEIVED_NAME = 'Smart Reports Bot';
 
-export const HACKATHON_SENT_NAME = 'John Doe';
+export const HACKATHON_SENT_NAME = 'Sara Smith';

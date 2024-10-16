@@ -110,7 +110,7 @@ const AtlasHeader = () => {
           alignY="center"
         >
           <Text size="small" weight="medium">
-            YH
+            SS
           </Text>
         </Flex>
 

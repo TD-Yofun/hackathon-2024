@@ -1,0 +1,19 @@
+.analyze {
+  max-width: 60%;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+
+  img {
+    width: 64px;
+  }
+
+  p {
+    border-radius: 4px;
+    padding: 8px 12px;
+    background-color: #ebf9fa;
+    overflow: hidden;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  }
+}

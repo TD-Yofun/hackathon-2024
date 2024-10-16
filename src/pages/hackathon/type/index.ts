@@ -16,6 +16,7 @@ export interface HackathonMessage {
   messageType: MessageType;
   loading?: boolean;
   data?: any;
+  analysis?: string;
 }
 
 /**

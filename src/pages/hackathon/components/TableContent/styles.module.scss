@@ -1,0 +1,35 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  thead {
+    background-color: var(--gray-400);
+
+    th {
+      border-right: 1px solid var(--gray-300);
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+      }
+      &:nth-child(even) {
+        background-color: var(--gray-200);
+      }
+
+      &:hover {
+        background-color: var(--gray-300);
+      }
+
+      td {
+        border-right: 1px solid var(--gray-400);
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}

@@ -59,13 +59,14 @@ const ChatContent = () => {
       messageType: MessageType.TEXT,
     };
     dispatch(setMessages([...messages, sentMessage, replyMessage]));
-    const { messageType, message, data } = await request(v);
+    const { messageType, message, data, analysis } = await request(v);
     const newReplyMessage: HackathonMessage = {
       ...replyMessage,
       loading: false,
       message,
       messageType,
       data,
+      analysis,
     };
     dispatch(setUpdateMessage(newReplyMessage));
     inputRef.current?.focus();

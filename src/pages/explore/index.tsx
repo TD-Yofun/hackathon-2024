@@ -9,20 +9,18 @@ import Toggle from '@cobalt/react-toggle';
 import { Text } from '@cobalt/react-typography';
 import SearchInput from '@cobalt-marketplace/react-search-input';
 
-import mockData from '@/../mock-server/mock-datas/explore-list.json';
 import Table, { Column } from '@industries-packages/react-table';
 
 import Header from '@/components/Header/Header';
 import Pagination from '@/components/Pagination/Pagination';
 import { HACKATHON_NAME, PADDING_SPACING } from '@/constant';
 import { useHooks } from '@/hooks/useHooks';
-
-const tableData = mockData._embedded.artifacts;
-
-type Data = (typeof tableData)[0];
+import { useSelector } from '@/store';
+import { ExploreItem } from '@/store/explore';
 
 const Explore = () => {
   const navigate = useNavigate();
+  const { data: tableData } = useSelector((state) => state.explore);
   const { theme, responsiveValue } = useHooks();
 
   const paddingValue = responsiveValue(['12px', '16px', '24px']);
@@ -31,12 +29,17 @@ const Explore = () => {
     padding: `12px ${paddingValue}`,
   };
 
-  const columns: Column<Data>[] = [
+  const columns: Column<ExploreItem>[] = [
     {
       title: 'Name',
       key: 'name',
       render: (value, record) => (
-        <Text color={theme.primary600} weight="medium" style={{ cursor: 'pointer' }}>
+        <Text
+          color={theme.primary600}
+          weight="medium"
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/explore/detail')}
+        >
           {record.name}
         </Text>
       ),
