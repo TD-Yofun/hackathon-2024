@@ -38,7 +38,7 @@ const Explore = () => {
           color={theme.primary600}
           weight="medium"
           style={{ cursor: 'pointer' }}
-          onClick={() => navigate('/explore/detail')}
+          onClick={() => navigate(`/explore/detail/${record.id}`)}
         >
           {record.name}
         </Text>

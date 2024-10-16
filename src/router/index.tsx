@@ -41,7 +41,7 @@ export const routes: Route[] = [
     element: <HackathonPage />,
   },
   {
-    path: '/explore/detail',
+    path: '/explore/detail/:id',
     element: <ExploreDetail />,
   },
   {

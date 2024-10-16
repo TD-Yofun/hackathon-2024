@@ -1,0 +1,45 @@
+{
+  "columns": [
+    {
+      "title": "Member Id",
+      "key": "external_entity_id"
+    },
+    {
+      "title": "Name",
+      "key": "external_entity_name"
+    },
+    {
+      "title": "Interaction Id",
+      "key": "interaction_id"
+    },
+    {
+      "title": "Interaction Type",
+      "key": "interaction_type"
+    },
+    {
+      "title": "Agent Type",
+      "key": "agent_type"
+    },
+    {
+      "title": "Interaction Status",
+      "key": "interaction_status"
+    },
+    {
+      "title": "Interaction Direction",
+      "key": "interaction_direction"
+    },
+    {
+      "title": "Component Name",
+      "key": "component_name"
+    },
+    {
+      "title": "Exit Name",
+      "key": "exit_name"
+    },
+    {
+      "title": "Error Code",
+      "key": "error_code"
+    }
+  ],
+  "data": []
+}

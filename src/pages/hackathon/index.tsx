@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import _deepClone from 'lodash/cloneDeep';
@@ -27,6 +27,22 @@ import { useHackathonRequest } from './hooks/useHackathonRequest';
 import { HackathonMessage, MessageType } from './type';
 import { getHackathonMessages, saveHackathonMessages } from './utils/storage';
 
+export const renderComponent = (activeMessage: HackathonMessage | null, tableRef?: any) => {
+  if (!activeMessage) {
+    return <NoConversation />;
+  }
+  if (activeMessage.messageType === MessageType.TABLE) {
+    return <TableContent forwardedRef={tableRef} message={activeMessage} />;
+  }
+  if (
+    [MessageType.CHART, MessageType.BAR_CHART, MessageType.LINE_CHART, MessageType.PIE_CHART].includes(
+      activeMessage.messageType,
+    )
+  ) {
+    return <ChartContent key={activeMessage.id} message={activeMessage} />;
+  }
+};
+
 const HackathonPage = () => {
   const { dispatch } = useHooks();
   const navigate = useNavigate();
@@ -50,49 +66,44 @@ const HackathonPage = () => {
   };
 
   const renderContent = () => {
-    if (!activeMessage) {
-      return <NoConversation />;
-    }
-    if (activeMessage.messageType === MessageType.TABLE) {
-      return <TableContent forwardedRef={tableRef} message={activeMessage} />;
-    }
-    if (
-      [MessageType.CHART, MessageType.BAR_CHART, MessageType.LINE_CHART, MessageType.PIE_CHART].includes(
-        activeMessage.messageType,
-      )
-    ) {
-      return <ChartContent key={activeMessage.id} message={activeMessage} />;
-    }
+    return renderComponent(activeMessage, tableRef);
   };
 
-  // init conversation
+  const onNewConversation = useCallback(
+    (messages: HackathonMessage[]) => {
+      const initMessage = async () => {
+        const loadingMessage: HackathonMessage = {
+          id: v4(),
+          type: 'received',
+          message: 'loading...',
+          timestamp: Date.now(),
+          name: HACKATHON_RECEIVED_NAME,
+          loading: true,
+          messageType: MessageType.TEXT,
+        };
 
-  useEffect(() => {
-    const initMessage = async () => {
-      const loadingMessage: HackathonMessage = {
-        id: v4(),
-        type: 'received',
-        message: 'loading...',
-        timestamp: Date.now(),
-        name: HACKATHON_RECEIVED_NAME,
-        loading: true,
-        messageType: MessageType.TEXT,
+        dispatch(setMessages([loadingMessage]));
+        dispatch(setHackathonLoading(true));
+        const response = await request('Hello');
+        // update message
+        dispatch(setUpdateMessage({ id: loadingMessage.id, loading: false, message: response.message }));
+        dispatch(setHackathonLoading(false));
       };
+      if (messages.length === 0) {
+        initMessage();
+      }
+    },
+    [dispatch, request],
+  );
 
-      dispatch(setMessages([loadingMessage]));
-      dispatch(setHackathonLoading(true));
-      const response = await request('Hello');
-      // update message
-      dispatch(setUpdateMessage({ id: loadingMessage.id, loading: false, message: response.message }));
-      dispatch(setHackathonLoading(false));
-    };
+  // read messages from local storage
+  useEffect(() => {
     const messages = getHackathonMessages();
-    if (messages.length > 0) {
-      dispatch(setMessages(messages));
-    } else {
-      initMessage();
-    }
-  }, [dispatch, request]);
+    dispatch(setMessages(messages));
+    setTimeout(() => {
+      onNewConversation(messages);
+    }, 0);
+  }, [dispatch, onNewConversation]);
 
   // save messages to local storage
   useEffect(() => {
@@ -122,9 +133,10 @@ const HackathonPage = () => {
             onClick={() => {
               dispatch(setActiveMessage(null));
               dispatch(setMessages([]));
+              onNewConversation([]);
             }}
           >
-            Clear
+            New Conversation
           </Button>
 
           {renderActions()}
@@ -160,7 +172,7 @@ const HackathonPage = () => {
             );
             // add to history
             const first = _deepClone(data[0]);
-            dispatch(setExploreData([{ ...first, name: value }, ...data]));
+            dispatch(setExploreData([{ ...first, id: activeMessage?.id || '', name: value }, ...data]));
             // dismiss modal
             setShowSaveModal(false);
           }}

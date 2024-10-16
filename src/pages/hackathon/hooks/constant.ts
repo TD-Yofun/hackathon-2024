@@ -2,6 +2,7 @@ import barChart from '../components/ChartContent/chart-bar.json';
 import lineChart from '../components/ChartContent/chart-line.json';
 import pieChart from '../components/ChartContent/chart-pie.json';
 import tableJson1 from '../components/TableContent/table.json';
+import tableJson3 from '../components/TableContent/table3.json';
 import { MessageType } from '../type';
 
 interface Conversation {
@@ -21,7 +22,7 @@ export const CONVERSATIONS: Conversation[] = [
   {
     question:
       'I need to check if there’s a report that shows all digital and voice interactions from a specific member. Does such a report already exist?',
-    answer: `Certainly! To find the interactions by member ID, I recommend using the Banking Omnichannel Interactions Report. 
+    answer: `Certainly! To find the interactions by member ID, I recommend using the <b>Banking Omnichannel Interactions Report</b>. 
 This report includes each member's unique ID, interaction times, types, also the interaction channel used, among other fields. Could you please provide the member ID you’re looking to analyze?`,
     messageType: MessageType.TABLE,
     data: tableJson1,
@@ -40,7 +41,7 @@ This report includes each member's unique ID, interaction times, types, also the
     answer: `I understand. To determine the failed interactions, I’ll combine data from the Banking Omnichannel Interactions Report and the Studio Flow Execution Report. By cross-referencing the two, I can identify where interactions may not have completed successfully`,
     messageType: MessageType.TABLE,
     data: {
-      ...tableJson1,
+      ...tableJson3,
       data: tableJson1.data.filter((row: any) => row.external_entity_id === '0001328560' && !!row['error_code']),
     },
     analysis: `Based on the combined data, there were 2 SMS errors in the past month. Here are the interaction ids associated: X and Z.`,
@@ -53,8 +54,8 @@ This report includes each member's unique ID, interaction times, types, also the
     analysis: `From the data, it seems that digital channels are the most frequently used, comprising 65% of total interactions, while voice interactions make up 35%. This suggests a preference toward digital channels, though voice interactions remain significant.`,
   },
   {
-    question: `Thank you for the detailed insights. Since we are discussing trends, could you provide an overview of interaction channel trends between April and October?`,
-    answer: `Here is a summary of interaction trends across digital and voice channels over the past few months.`,
+    question: `Thank you for the detailed insights. Oh one more thing, maybe our CMO is still interested in the overview of interaction channel usage trends over the past few months.`,
+    answer: `Of course, here is a summary of interaction channel usage trends across digital and voice channels between April and October.`,
     messageType: MessageType.LINE_CHART,
     data: lineChart,
     analysis: `From the data, digital channels showed a relatively steady interaction rate, starting with 120 interactions in April and peaking at 230 in August, ending with 210 in October. Voice interactions, on the other hand, experienced more variation, beginning with 220 in April, reaching a high of 330 in September, and concluding at 310 in October. The overall interaction volume saw consistent growth, indicating increasing engagement across both channels.`,

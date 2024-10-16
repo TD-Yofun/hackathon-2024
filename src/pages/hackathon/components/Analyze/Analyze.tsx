@@ -6,13 +6,16 @@ import { Text } from '@cobalt/react-typography';
 import imageSrc from './3.png';
 import styles from './styles.module.scss';
 
-const TextBubble = ({ message }: { message: string }) => {
+const TextBubble = ({ message, isAnimate }: { message: string; isAnimate: boolean }) => {
   const messageRef = useRef(message);
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState(isAnimate ? '' : message);
 
   // simulate typing effect
   useEffect(() => {
+    if (!isAnimate) {
+      return;
+    }
     const message = messageRef.current;
     let i = 0;
     const interval = setInterval(() => {
@@ -23,17 +26,24 @@ const TextBubble = ({ message }: { message: string }) => {
       }
     }, 50);
     return () => clearInterval(interval);
-  }, []);
+  }, [isAnimate]);
 
   return <Text>{text}</Text>;
 };
 
 const Analyze = ({ message }: { message: string }) => {
   const [visible, setVisible] = useState(true);
+  const [isAnimate, setIsAnimate] = useState(true);
+
+  useEffect(() => {
+    if (!visible) {
+      setIsAnimate(false);
+    }
+  }, [visible]);
 
   return (
     <Flex direction="column" alignX="end" gap={2} className={styles['analyze']}>
-      {visible && <TextBubble message={message} />}
+      {visible && <TextBubble message={message} isAnimate={isAnimate} />}
       <img src={imageSrc} alt="" onClick={() => setVisible(!visible)} />
     </Flex>
   );

@@ -11,7 +11,7 @@ type Props = Omit<React.ComponentProps<typeof Chat>, 'children'> & {
 const TextChat = (props: Props) => {
   return (
     <Chat {...props}>
-      <Text>{props.messageBody}</Text>
+      <Text dangerouslySetInnerHTML={{ __html: props.messageBody }} />
     </Chat>
   );
 };
